@@ -8,10 +8,7 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
-  @override
-  Widget build(BuildContext context) {
-
-    List<Icon> scoreKeeper = const [
+  List<Icon> scoreKeeper = [
     Icon(
       Icons.check,
       color: Colors.green,
@@ -30,38 +27,53 @@ class _QuizPageState extends State<QuizPage> {
     ),
   ];
 
-
-    Widget textButton (Color color, String texto, Icon icono){  
-
-       return TextButton(
-      style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(color),
-      ),
-      onPressed: () {
-        setState(() {
-          scoreKeeper.add(icono);
-        });
-        //iconos.scoreKeeper.add(this.icono);
-      },
-      child: Text(
-        texto,
-        style: const TextStyle(
-            color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.bold),
-      ),
-    );};
-
-  
+  @override
+  Widget build(BuildContext context) {
+    //construccion de cada textbuttom
+    Widget textButton(Color color, String texto, Icon icono) {
+      return TextButton(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(color),
+        ),
+        onPressed: () {
+          setState(() {
+            scoreKeeper.add(icono);
+            print(scoreKeeper.length);
+          });
+          //iconos.scoreKeeper.add(this.icono);
+        },
+        child: Text(
+          texto,
+          style: const TextStyle(
+              color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.bold),
+        ),
+      );
+    }
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         _Texto(),
-        textButton(Colors.green, 'BIEN', Icon(Icons.check)),
-        SizedBox(height: 5,),
-        textButton(Colors.red, 'Mal', Icon(Icons.close)),
+        textButton(
+          Colors.green,
+          'BIEN',
+          Icon(
+            Icons.check,
+            color: Colors.green,
+          ),
+        ),
+        SizedBox(
+          height: 5,
+        ),
+        textButton(
+            Colors.red,
+            'Mal',
+            Icon(
+              Icons.close,
+              color: Colors.red,
+            )),
         Row(
-
           children: scoreKeeper,
         ),
       ],
@@ -90,4 +102,3 @@ class _Texto extends StatelessWidget {
         ));
   }
 }
-
